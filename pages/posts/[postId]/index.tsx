@@ -5,6 +5,7 @@ import Layout from '../../../components/Layout';
 import PageHeader from '../../../components/PageHeader';
 import PostComponent from '../../../components/Post';
 import axios from 'axios';
+import Button from '@/components/Button';
 
 const prisma = new PrismaClient();
 
@@ -64,8 +65,8 @@ const PostDetails = ({ post }: PostDetailsProps) => {
           content={post.content}
         />
         <div>
-          <button onClick={handleUpdate}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <Button onClick={handleUpdate}>Edit</Button>
+          <Button onClick={handleDelete}>Delete</Button>
         </div>
       </>
     </Layout>

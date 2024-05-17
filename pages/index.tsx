@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import PageHeader from '../components/PageHeader';
 import PostList from '../components/PostList';
 import { useRouter } from 'next/router';
+import Button from '@/components/Button';
 
 const HomePage: React.FC = () => {
   const [posts, setPosts] = useState([]);
@@ -32,7 +33,7 @@ const HomePage: React.FC = () => {
         subheading="A Hiking & Trekimg Blog presented by SERRAKHI Youness"
         backgroundImage="/images/home-bg.jpg"
       />
-      <button onClick={handleCreate}>Create New Post</button> {/* Add the create button */}
+      <Button onClick={handleCreate}>Create New Post</Button>
       <PostList posts={posts} />
     </Layout>
   );

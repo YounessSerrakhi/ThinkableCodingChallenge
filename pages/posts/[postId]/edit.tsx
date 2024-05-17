@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { PrismaClient, Post } from '@prisma/client';
+import Button from '@/components/Button';
 
 const prisma = new PrismaClient();
 
@@ -38,32 +39,36 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
   };
 
   return (
-    <div>
-      <h1>Edit Post</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          name="subheading"
-          value={formData.subheading}
-          onChange={handleChange}
-          placeholder="Subheading"
-        />
-        <textarea
-          name="content"
-          value={formData.content}
-          onChange={handleChange}
-          placeholder="Content"
-        />
-        <button type="submit">Update Post</button>
-      </form>
-    </div>
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+  <h1>Edit Post</h1>
+  <form onSubmit={handleSubmit} style={{ backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
+    <input
+      type="text"
+      name="title"
+      value={formData.title}
+      onChange={handleChange}
+      placeholder="Title"
+      style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '4px', border: '1px solid #ccc' }}
+    />
+    <input
+      type="text"
+      name="subheading"
+      value={formData.subheading}
+      onChange={handleChange}
+      placeholder="Subheading"
+      style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '4px', border: '1px solid #ccc' }}
+    />
+    <textarea
+      name="content"
+      value={formData.content}
+      onChange={handleChange}
+      placeholder="Content"
+      style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '4px', border: '1px solid #ccc' }}
+    />
+    <Button type="submit">Update Post</Button>
+  </form>
+</div>
+
   );
 };
 
