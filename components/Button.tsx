@@ -1,12 +1,10 @@
 import React from 'react';
 
-interface ButtonProps {
-  onClick?: () => void; // Make onClick prop optional
-  type?: 'button' | 'submit' | 'reset';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, type = 'button', children }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, type = 'button', children, ...rest }) => {
   return (
     <button
       onClick={onClick}
@@ -26,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({ onClick, type = 'button', children }) =
         boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
         transition: 'transform 0.3s ease',
       }}
+      {...rest}
     >
       {children}
     </button>
