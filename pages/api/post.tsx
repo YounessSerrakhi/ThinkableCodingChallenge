@@ -3,9 +3,8 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { method, query, body } = req;
-  const id = body.id
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { method, body, query } = req;
 
   switch (method) {
     case 'GET':
@@ -19,9 +18,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     case 'POST':
       try {
-        const { title, subheading, createdAt, content } = body;
+        const { title, subheading, content } = body;
         const post = await prisma.post.create({
-          data: { title, subheading, createdAt, content },
+          data: { title, subheading, content, createdAt: new Date() },
         });
         return res.status(201).json(post);
       } catch (error) {
@@ -45,22 +44,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({ error: 'An error occurred while updating the post' });
       }
 
-      case 'DELETE':
-        try {
-          if (!id) {
-            return res.status(400).json({ error: 'Post ID is required' });
-          }
-          const deletedPost = await prisma.post.delete({
-            where: { id },
-          });
-          return res.status(200).json(deletedPost);
-        } catch (error) {
-          console.error('Error deleting post:', error);
-          return res.status(500).json({ error: 'An error occurred while deleting the post' });
+    case 'DELETE':
+      try {
+        const { id } = body;
+        if (!id) {
+          return res.status(400).json({ error: 'Post ID is required' });
         }
-      
+        const deletedPost = await prisma.post.delete({
+          where: { id },
+        });
+        return res.status(200).json(deletedPost);
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        return res.status(500).json({ error: 'An error occurred while deleting the post' });
+      }
 
     default:
       return res.status(405).json({ error: 'Method not allowed' });
   }
 }
+
+export default handler;
