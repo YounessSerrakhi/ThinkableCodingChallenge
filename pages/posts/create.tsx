@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import axios from 'axios';
 import Button from '@/components/Button';
+import TextEditor from '@/components/TextEditor';
 
 const CreatePostPage = () => {
   const router = useRouter();
@@ -30,6 +31,10 @@ const CreatePostPage = () => {
     }
   };
 
+  const handleContentChange = (content: string) => {
+    setFormData(prevState => ({ ...prevState, content }));
+  };
+
   return (
     <Layout>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -45,7 +50,10 @@ const CreatePostPage = () => {
             </div>
             <div style={{ marginBottom: '20px' }}>
               <label style={{ display: 'block', marginBottom: '5px' }}>Content</label>
-              <textarea name="content" value={formData.content} onChange={handleChange} required style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }} />
+              <TextEditor
+                value={formData.content}
+                onChange={handleContentChange}
+              />
             </div>
             <Button type="submit">Create Post</Button>
           </form>

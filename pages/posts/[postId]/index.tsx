@@ -52,24 +52,24 @@ const PostDetails = ({ post }: PostDetailsProps) => {
 
   return (
     <Layout>
-      <>
-        <PageHeader
-          title={post.title}
-          subheading={post.subheading}
-          backgroundImage='null'
-        />
-        <PostComponent
-          title={post.title}
-          subheading={post.subheading}
-          DateTime={post.createdAt}
-          content={post.content}
-        />
-        <div>
-          <Button onClick={handleUpdate}>Edit</Button>
-          <Button onClick={handleDelete}>Delete</Button>
-        </div>
-      </>
-    </Layout>
+    <>
+      <PageHeader
+        title={post.title}
+        subheading={post.subheading}
+        backgroundImage="null"
+      />
+      <PostComponent
+        title={post.title}
+        subheading={post.subheading}
+        DateTime={post.createdAt}
+        content={post.content}
+      />
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '20px' }}>
+        <Button onClick={handleUpdate}>Edit</Button>
+        <Button onClick={handleDelete}>Delete</Button>
+      </div>
+    </>
+  </Layout>
   );
 };
 

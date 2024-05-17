@@ -4,6 +4,7 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import { PrismaClient, Post } from '@prisma/client';
 import Button from '@/components/Button';
+import TextEditor from '@/components/TextEditor';
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,9 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleContentChange = (content: string) => {
+    setFormData({ ...formData, content });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,12 +62,9 @@ const EditPost: React.FC<EditPostProps> = ({ post }) => {
       placeholder="Subheading"
       style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '4px', border: '1px solid #ccc' }}
     />
-    <textarea
-      name="content"
-      value={formData.content}
-      onChange={handleChange}
-      placeholder="Content"
-      style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '4px', border: '1px solid #ccc' }}
+    <TextEditor
+                value={formData.content}
+                onChange={handleContentChange}
     />
     <Button type="submit">Update Post</Button>
   </form>

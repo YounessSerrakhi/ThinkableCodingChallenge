@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Button from './Button';
 import SearchBar from './SearchBar';
+import { useRouter } from 'next/router';
 
 type Post = {
   id: string;
@@ -17,6 +18,7 @@ type PostListProps = {
 const PostList: React.FC<PostListProps> = ({ posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
   const postsPerPage = 6;
 
   const totalPages = Math.ceil(posts.length / postsPerPage);
@@ -51,11 +53,18 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
     currentPage * postsPerPage
   );
 
+  const handleCreate = () => {
+    router.push('/posts/create');
+  };
+
   return (
     <div className="container px-4 px-lg-5">
       <div className="row gx-4 gx-lg-5 justify-content-center">
         <div className="col-md-10 col-lg-8 col-xl-7">
           <SearchBar value={searchQuery} onChange={handleSearch} />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '20px' }}>
+           <Button onClick={handleCreate}>Create New Post</Button>
+          </div>
           {currentPosts.map((post) => (
             <div key={post.id} className="post-preview">
               <Link href={`/posts/${post.id}`} legacyBehavior>

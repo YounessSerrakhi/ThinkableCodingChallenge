@@ -3,12 +3,9 @@ import axios from 'axios';
 import Layout from '../components/Layout';
 import PageHeader from '../components/PageHeader';
 import PostList from '../components/PostList';
-import { useRouter } from 'next/router';
-import Button from '@/components/Button';
 
 const HomePage: React.FC = () => {
   const [posts, setPosts] = useState([]);
-  const router = useRouter();
   const fetchPosts = async () => {
     try {
       const response = await axios.get('/api/post'); 
@@ -23,9 +20,6 @@ const HomePage: React.FC = () => {
     fetchPosts();
   }, []); // Empty dependency array ensures fetchPosts() is only called once on mount
 
-  const handleCreate = () => {
-    router.push('/posts/create');
-  };
   return (
     <Layout>
       <PageHeader
@@ -33,7 +27,6 @@ const HomePage: React.FC = () => {
         subheading="A Hiking & Trekimg Blog presented by SERRAKHI Youness"
         backgroundImage="/images/home-bg.jpg"
       />
-      <Button onClick={handleCreate}>Create New Post</Button>
       <PostList posts={posts} />
     </Layout>
   );
