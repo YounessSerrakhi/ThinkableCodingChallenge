@@ -5,7 +5,7 @@ const Nav: React.FC = () => (
   <nav className="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div className="container px-4 px-lg-5">
       <Link href="/" className="navbar-brand">
-        Start Bootstrap
+        Serrakhi
       </Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -19,14 +19,10 @@ const Nav: React.FC = () => (
             </Link>
           </li>
           <li className="nav-item">
-            <Link href="/post" className="nav-link px-lg-3 py-3 py-lg-4">
-              Sample Post
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/contact" className="nav-link px-lg-3 py-3 py-lg-4">
-              Contact
-            </Link>
+          <Link href="https://younessserrakhi.github.io/portfolio/" className="nav-link px-lg-3 py-3 py-lg-4" target="_blank">
+            Contact
+          </Link>
+
           </li>
         </ul>
       </div>

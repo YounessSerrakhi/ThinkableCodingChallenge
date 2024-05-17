@@ -5,7 +5,7 @@ type Post = {
   id: string;
   title: string;
   subheading: string;
-  DateTime: string;
+  createdAt: string;
 };
 
 type PostListProps = {
@@ -25,8 +25,15 @@ const PostList: React.FC<PostListProps> = ({ posts }) => (
               </a>
             </Link>
             <p className="post-meta">
-              on {post.DateTime}
+              on {new Date(post.createdAt).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
             </p>
+
           </div>
         ))}
       </div>
