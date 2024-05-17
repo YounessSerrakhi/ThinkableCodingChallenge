@@ -11,6 +11,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@prisma/client": "^5.14.0",
     "axios": "^1.6.8",
     "mongodb": "^6.6.2",
